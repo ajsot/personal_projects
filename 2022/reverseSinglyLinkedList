@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+struct Node 
+{
+    int data;
+    struct Node* next;
+    Node(int data)
+    {
+        this->data = data;
+        next = NULL;
+    }
+};
+
+struct LinkedList
+{
+    Node* head;
+    LinkedList()
+    {
+        head = NULL;
+    }
+
+    void reverse()
+    {
+        // Initialize current, prev, and next pointers
+        Node* current = head;
+        Node* prev = NULL;
+        Node* next = NULL;
+
+        while (current != NULL) 
+        {
+            // Save next
+            next = current->next;
+            // Reverse current node's pointer
+            current->next = prev;
+            // Move pointers up by one.
+            prev = current;
+            current = next;
+        }
+        head = prev;
+    }
+
+    void print()
+    {
+        struct Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+    }
+
+    void insertHead(int data)
+    {
+        Node* temp = new Node(data);
+        temp->next = head;
+        head = temp;
+    }
+};
+
+int main()
+{
+    LinkedList linkedList1;
+
+    for (int i = 10; i > 0; i--)
+    {
+        linkedList1.insertHead(i);
+    }
+    
+    cout << "Original linked list: " << endl;
+    linkedList1.print();
+    cout << endl;
+
+    linkedList1.reverse();
+    
+    cout << "Reverse linked list: " << endl;
+    linkedList1.print();
+    cout << endl;
+
+    return 0;
+}

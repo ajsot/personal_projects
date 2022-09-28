@@ -1,3 +1,5 @@
+// Program demonstrating how to reverse a singly linked list in C++
+
 #include <iostream>
 using namespace std;
 
